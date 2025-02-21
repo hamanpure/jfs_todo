@@ -1,0 +1,95 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
+
+import beans.Register;
+import beans.Task;
+import factory.DBConn;
+
+public class ToDoDAOImpl implements ToDoDAO {
+
+	Connection con;
+	Statement stmt;
+	ResultSet rs;
+	PreparedStatement pstmt1,pstmt2,pstmt3,pstmt4,pstmt5;
+	
+	// make this class Singleton
+	static ToDoDAO dao;
+	
+	private ToDoDAOImpl() {
+		try {
+			con=DBConn.getConn();
+			stmt=con.createStatement();
+			pstmt1=con.prepareStatement("insert into register values (?,?,?,?,?,?,?)");
+			pstmt2=con.prepareStatement("insert into tasks values (?,?,?,?,?)");
+			pstmt3=con.prepareStatement("insert into taskid_pks values (?,?)");
+			pstmt4=con.prepareStatement("update taskid_pks set taskid=? where regid=?");
+			pstmt5=con.prepareStatement("update tasks set taskstatus=3 where regid=? and taskid=?");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	// factory method that is creating and returning Singleton object
+	public static ToDoDAO getInstance() {
+		if(dao==null)
+			new ToDoDAOImpl();
+		return dao;
+	}
+	
+	@Override
+	public int register(Register reg) {
+		int regId=0;
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return regId;
+	}
+
+	@Override
+	public int login(String email, String pass) {
+		
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int addTask(int regId, Task task) {
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public List<Task> findAllTaskByRegId(int regId) {
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean markTaskCompleted(int regId, int taskId) {
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+}
